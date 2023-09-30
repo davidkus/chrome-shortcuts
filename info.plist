@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE plist PUBLIC \"-//Apple Computer//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\" >
+<plist version='1.0'>
+  <dict>
+    <key>Label</key><string>com.github.davidkus.chrome-shortcuts</string>
+    <key>Program</key><string>/usr/local/bin/chrome-shortcuts</string>
+    <key>EnvironmentVariables</key>
+    <dict>
+      <key>ECHO_ADDRESS</key>
+      <string>localhost:59438</string>
+      <key>CONFIG_FILE</key>
+      <string>/usr/local/etc/chrome-shortcuts/config.json</string>
+    </dict>
+    <key>StandardOutPath</key><string>/usr/local/var/log/chrome-shortcuts.out.log</string>
+    <key>StandardErrorPath</key><string>/usr/local/var/log/chrome-shortcuts.out.log</string>
+    <key>KeepAlive</key><true/>
+    <key>RunAtLoad</key><true/>
+  </dict>
+</plist>

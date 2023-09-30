@@ -1,0 +1,15 @@
+{
+  "shortcuts": {
+    "youtube": "https://www.youtube.com",
+    "gh": "https://github.com",
+    "drive": "https://drive.google.com/drive",
+    "docs": "https://docs.google.com",
+    "sheets": "https://docs.google.com/spreadsheets",
+    "yc": "https://news.ycombinator.com/news",
+    "reddit": "https://reddit.com"
+  },
+  "shortcutsWithParams": {
+    "drive": "https://drive.google.com/drive/u/0/search?q=%s",
+    "google": "https://www.google.com/search?q=%s"
+  }
+}
