@@ -6,6 +6,7 @@ import (
 	"io"
 	"log"
 	"net/http"
+	"net/url"
 	"os"
 	"strings"
 
@@ -36,23 +37,23 @@ func main() {
 			return c.String(http.StatusInternalServerError, fmt.Sprintf("Internal Server Error: %s", err.Error()))
 		}
 
-		var url string
+		var targetUrl string
 		if len(parts) == 1 {
-			url = mappings.Shortcuts[parts[0]]
+			targetUrl = mappings.Shortcuts[parts[0]]
 		} else {
-			url = mappings.ShortcutsWithParams[parts[0]]
+			targetUrl = mappings.ShortcutsWithParams[parts[0]]
 			// Replace %s with the rest of the query
-			if len(parts) > 1 && strings.Contains(url, "%s") {
-				url = fmt.Sprintf(url, parts[1])
+			if len(parts) > 1 && strings.Contains(targetUrl, "%s") {
+				targetUrl = fmt.Sprintf(targetUrl, url.QueryEscape(parts[1]))
 			}
 		}
 
-		if len(url) == 0 {
+		if len(targetUrl) == 0 {
 			// Redirect to Google if we can't find a match.
-			return c.Redirect(http.StatusTemporaryRedirect, fmt.Sprintf("https://www.google.com/search?q=%s", query))
+			return c.Redirect(http.StatusTemporaryRedirect, fmt.Sprintf("https://www.google.com/search?q=%s", url.QueryEscape(query)))
 		}
 
-		return c.Redirect(http.StatusTemporaryRedirect, url)
+		return c.Redirect(http.StatusTemporaryRedirect, targetUrl)
 	})
 	e.GET("/config", func(c echo.Context) error {
 		var result, err = readConfigFileData(configFile)
