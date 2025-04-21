@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
-	"log"
+	"log/slog"
 	"net/http"
 	"net/url"
 	"os"
@@ -17,7 +17,7 @@ import (
 func main() {
 
 	if err := godotenv.Load(".env"); err != nil {
-		log.Print("Error loading .env file")
+		slog.Info("Error loading .env file")
 	}
 
 	address := os.Getenv("ECHO_ADDRESS")
